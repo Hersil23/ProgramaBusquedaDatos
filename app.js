@@ -13,9 +13,9 @@ class GestorContactos {
       new Contacto("Ana Perez", "123456789"),
       new Contacto("Luis Gomez", "987654321"),
       new Contacto("Carlos Ruiz", "555555555"),
-      new Contacto("Lucía Fernández", "444444444"),
-      new Contacto("María López", "111222333"),
-      new Contacto("Pedro Martínez", "999888777"),
+      new Contacto("Lucia Fernandez", "444444444"),
+      new Contacto("Maria Lopez", "111222333"),
+      new Contacto("Pedro Martinez", "999888777"),
     ];
   }
 

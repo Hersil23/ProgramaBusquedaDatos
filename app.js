@@ -18,7 +18,7 @@ class GestorContactos {
     ];
   }
 
-  // @desc Busca contactos por nombre (case-insensitive)
+  // @desc Busca contactos por nombre 
   buscar(nombre) {
     const filtro = nombre.toLowerCase();
     return this.contactos.filter(c =>
@@ -42,7 +42,7 @@ btnModo.addEventListener("click", () => {
 
 // @event click para buscar contactos
 btnBuscar.addEventListener("click", () => {
-  const texto = input.value.trim();
+  const texto = input.value.trim();// Obtener el texto del input y el .trim elimina espacios al inicio y al final
   listaResultados.innerHTML = "";
 
   if (!texto) {

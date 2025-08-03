@@ -1,4 +1,4 @@
-// @desc Clase Contacto para representar cada entrada
+// Clase para representar un contacto
 class Contacto {
   constructor(nombre, telefono) {
     this.nombre = nombre;
@@ -6,43 +6,56 @@ class Contacto {
   }
 }
 
-// @desc Clase Gestor para manejar la lógica de búsqueda
+// Clase para gestionar los contactos
 class GestorContactos {
   constructor() {
     this.contactos = [
-      new Contacto("Ana Torres", "0414-1234567"),
-      new Contacto("Luis Gómez", "0424-7654321"),
-      new Contacto("Carlos Ruiz", "0412-9988776"),
-      new Contacto("María López", "0416-3344556"),
-      new Contacto("Pedro Martínez", "0426-1122334"),
+      new Contacto("Ana Perez", "123456789"),
+      new Contacto("Luis Gomez", "987654321"),
+      new Contacto("Carlos Ruiz", "555555555"),
+      new Contacto("Lucía Fernández", "444444444"),
+      new Contacto("María López", "111222333"),
+      new Contacto("Pedro Martínez", "999888777"),
     ];
   }
 
-  // @desc Busca contactos por nombre 
   buscar(nombre) {
-    const filtro = nombre.toLowerCase();
     return this.contactos.filter(c =>
-      c.nombre.toLowerCase().includes(filtro)
+      c.nombre.toLowerCase().includes(nombre.toLowerCase())
     );
+  }
+
+  obtenerTodos() {
+    return this.contactos;
   }
 }
 
-// @desc Inicialización y eventos
+// Instancia del gestor
 const gestor = new GestorContactos();
+
+// Referencias al DOM
 const input = document.getElementById("searchInput");
 const btnBuscar = document.getElementById("searchBtn");
 const listaResultados = document.getElementById("resultsList");
-const btnModo = document.getElementById("toggleDark");
+const namesList = document.getElementById("namesList");
+const toggleDark = document.getElementById("toggleDark");
 
-// @event click para alternar modo oscuro
-btnModo.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  btnModo.textContent = document.body.classList.contains("dark") ? "🌞" : "🌙";
-});
+// Mostrar todos los nombres al cargar
+function mostrarTodosLosNombres() {
+  const todos = gestor.obtenerTodos();
+  namesList.innerHTML = "";
 
-// @event click para buscar contactos
+  todos.forEach(c => {
+    const li = document.createElement("li");
+    li.textContent = c.nombre;
+    li.className = "text-blue-700 dark:text-white";
+    namesList.appendChild(li);
+  });
+}
+
+// Buscar contactos por nombre
 btnBuscar.addEventListener("click", () => {
-  const texto = input.value.trim();// Obtener el texto del input y el .trim elimina espacios al inicio y al final
+  const texto = input.value.trim();
   listaResultados.innerHTML = "";
 
   if (!texto) {
@@ -64,3 +77,11 @@ btnBuscar.addEventListener("click", () => {
     listaResultados.appendChild(li);
   });
 });
+
+// Alternar modo oscuro
+toggleDark.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+
+// Inicializar lista completa al cargar
+mostrarTodosLosNombres();
